@@ -5,9 +5,9 @@ var mongoosePaginate = require('mongoose-paginate')
 var EmpMstSchema = new mongoose.Schema({
     name: String,
     designation: String,
-    basesalary: mongoose.Schema.Types.Decimal,
-    deductions: mongoose.Schema.Types.Decimal,
-    takehomesalary: mongoose.Schema.Types.Decimal,
+    basesalary: Number,
+    deductions: Number,
+    takehomesalary: Number,
     date: { type: Date, default: Date.now },
     status: String
 })
