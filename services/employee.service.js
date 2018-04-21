@@ -50,7 +50,7 @@ exports.createEmployee = async function(empmst){
 
         // Saving the Todo
 
-        var savedEmployee = await newTodo.save()
+        var savedEmployee = await newEmployee.save()
 
         return savedEmployee;
     }catch(e){

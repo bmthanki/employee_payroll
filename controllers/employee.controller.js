@@ -52,12 +52,12 @@ exports.createEmployee = async function(req, res, next){
         // Calling the Service function with the new object from the Request Body
 
         var createdEmployee = await Service.createEmployee(employee)
-        return res.status(201).json({status: 201, data: createdTodo, message: "Succesfully Created ToDo"})
+        return res.status(201).json({status: 201, data: createdEmployee, message: "Succesfully Created ToDo"})
     }catch(e){
 
         //Return an Error Response Message with Code and the Error Message.
 
-        return res.status(400).json({status: 400, message: "Employee Creation was Unsuccesfull, Bhargav"})
+        return res.status(400).json({status: 400, message: "Employee Creation was Unsuccesfull"})
     }
 }
 
