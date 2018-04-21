@@ -7,7 +7,7 @@ var Service = require('../services/employee.service')
 _this = this
 
 
-// Async Controller function to get the To do List
+// Async Controller function to get the Employee List
 
 exports.getEmployees = async function(req, res, next){
 
@@ -20,7 +20,7 @@ exports.getEmployees = async function(req, res, next){
 
         var employees = await Service.getEmployees({}, page, limit)
 
-        // Return the todos list with the appropriate HTTP Status Code and Message.
+        // Return the employees list with the appropriate HTTP Status Code and Message.
 
         return res.status(200).json({status: 200, data: employees, message: "Succesfully Employees Recieved"});
 
@@ -52,7 +52,7 @@ exports.createEmployee = async function(req, res, next){
         // Calling the Service function with the new object from the Request Body
 
         var createdEmployee = await Service.createEmployee(employee)
-        return res.status(201).json({status: 201, data: createdEmployee, message: "Succesfully Created ToDo"})
+        return res.status(201).json({status: 201, data: createdEmployee, message: "Succesfully Created Employee"})
     }catch(e){
 
         //Return an Error Response Message with Code and the Error Message.

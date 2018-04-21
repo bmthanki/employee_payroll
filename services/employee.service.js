@@ -5,7 +5,7 @@ var EmpMstModel = require('../models/empmst.model')
 // Saving the context of this module inside the _the variable
 _this = this
 
-// Async function to get the To do List
+// Async function to get the Employee List
 
 exports.getEmployees = async function(query, page, limit){
 
@@ -19,17 +19,17 @@ exports.getEmployees = async function(query, page, limit){
     // Try Catch the awaited promise to handle the error
 
     try {
-        var todos = await EmpMstModel.paginate(query, options)
+        var employees = await EmpMstModel.paginate(query, options)
 
-        // Return the todod list that was retured by the mongoose promise
+        // Return the employee list that was retured by the mongoose promise
 
-        return todos;
+        return employees;
 
     } catch (e) {
 
         // return a Error message describing the reason
 
-        throw Error('Error while Paginating Todos')
+        throw Error('Error while Paginating Employees')
     }
 }
 
@@ -48,7 +48,7 @@ exports.createEmployee = async function(empmst){
 
     try{
 
-        // Saving the Todo
+        // Saving the Employee
 
         var savedEmployee = await newEmployee.save()
 
@@ -65,14 +65,14 @@ exports.updateEmployee = async function(empmst){
     var id = empmst.id
 
     try{
-        //Find the old Todo Object by the Id
+        //Find the old Employee Object by the Id
 
         var oldEmployee = await EmpMstModel.findById(id);
     }catch(e){
         throw Error("Error occured while Finding the Employee")
     }
 
-    // If no old Todo Object exists return false
+    // If no old Employee Object exists return false
 
     if(!oldEmployee){
         return false;
@@ -80,7 +80,7 @@ exports.updateEmployee = async function(empmst){
 
     console.log(oldEmployee)
 
-    //Edit the Todo Object
+    //Edit the Employee Object
 
     oldEmployee.name = empmst.name,
     oldEmployee.designation = empmst.designation,
@@ -102,7 +102,7 @@ exports.updateEmployee = async function(empmst){
 
 exports.deleteEmployee = async function(id){
 
-    // Delete the Todo
+    // Delete the Employee
 
     try{
         var deleted = await EmpMstModel.remove({_id: id})
