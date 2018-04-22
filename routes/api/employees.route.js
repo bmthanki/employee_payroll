@@ -17,6 +17,7 @@ router.put('/', EmployeeController.updateEmployee)
 
 router.delete('/:id',EmployeeController.removeEmployee)
 
+router.post('/deduction',EmployeeController.createDeductions)
 
 // Export the Router
 

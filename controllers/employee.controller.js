@@ -37,6 +37,8 @@ exports.createEmployee = async function(req, res, next){
 
     // Req.Body contains the form submit values.
 
+    console.log(req.body)
+
     var employee = {
         name: req.body.name,
         designation: req.body.designation,
@@ -59,6 +61,42 @@ exports.createEmployee = async function(req, res, next){
 
         return res.status(400).json({status: 400, message: "Employee Creation was Unsuccesfull"})
     }
+}
+
+exports.createDeductions = async function(req, res, next){
+    // Req.Body contains the form submit values.
+    if(!req.body._id){
+        return res.status(400).json({status: 400., message: "Id must be present"})
+    }
+
+    var id = req.body._id;
+
+    console.log(req.body)
+
+    var employee = {
+        id,
+        name: req.body.name ? req.body.name:null,
+        designation: req.body.designation?req.body.designation:null,
+        basesalary: req.body.basesalary?req.body.basesalary:null,
+        deductions: req.body.deductions?req.body.deductions:null,
+        takehomesalary: req.body.takehomesalary?req.body.takehomesalary:null,
+        status: req.body.status?req.body.status:null
+    }
+
+    try{
+
+        // Calling the Service function with the new object from the Request Body
+
+        var createdEmployee = await Service.updateEmployee(employee)
+        console.log(employee);
+        return res.status(200).json({status: 201, data: createdEmployee, message: "Succesfully Created Employee"})
+    }catch(e){
+
+        //Return an Error Response Message with Code and the Error Message.
+
+        return res.status(400).json({status: 400, message: "Employee Creation was Unsuccesfull"})
+    }
+
 }
 
 exports.updateEmployee = async function(req, res, next){

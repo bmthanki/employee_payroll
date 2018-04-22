@@ -46,6 +46,9 @@ exports.createEmployee = async function(empmst){
         status: empmst.status
     })
 
+
+
+
     try{
 
         // Saving the Employee
@@ -60,6 +63,7 @@ exports.createEmployee = async function(empmst){
         throw Error("Error while Creating New Employee")
     }
 }
+
 
 exports.updateEmployee = async function(empmst){
     var id = empmst.id
