@@ -19,6 +19,7 @@ router.delete('/:id',EmployeeController.removeEmployee)
 
 router.post('/deduction',EmployeeController.createDeductions)
 
+
 // Export the Router
 
 module.exports = router;

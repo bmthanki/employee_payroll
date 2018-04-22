@@ -118,3 +118,34 @@ exports.deleteEmployee = async function(id){
         throw Error("Error Occured while Deleting the Employee")
     }
 }
+
+
+exports.deleteEmployee = async function(id){
+
+    // Delete the Employee
+
+    try{
+        var deleted = await EmpMstModel.remove({_id: id})
+        if(deleted.n === 0){
+            throw Error("Employee Could not be deleted")
+        }
+        return deleted
+    }catch(e){
+        throw Error("Error Occured while Deleting the Employee")
+    }
+}
+
+exports.removeDeductions = async function(id){
+
+    // Delete the Employee
+    try{
+        var find = await DeductionsModel.findById(id);
+        var deleted = await DeductionsModel.remove({_id: id})
+        if(deleted.n === 0){
+            throw Error("Deduction Could not be deleted")
+        }
+        return deleted
+    }catch(e){
+        throw Error("Error Occured while Deleting the Deduction")
+    }
+}
