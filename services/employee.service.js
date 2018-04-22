@@ -41,7 +41,7 @@ exports.createEmployee = async function(empmst){
         name: empmst.name,
         designation: empmst.designation,
         basesalary: empmst.basesalary,
-        deductions: empmst.deductions,
+        //deductions: empmst.deductions,
         takehomesalary: empmst.takehomesalary,
         status: empmst.status
     })

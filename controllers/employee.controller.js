@@ -43,7 +43,7 @@ exports.createEmployee = async function(req, res, next){
         name: req.body.name,
         designation: req.body.designation,
         basesalary: req.body.basesalary,
-        deductions: req.body.deductions,
+        //deductions: req.body.deductions,
         takehomesalary: req.body.takehomesalary,
         status: req.body.status
     }
