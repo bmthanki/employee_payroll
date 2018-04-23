@@ -89,12 +89,12 @@ exports.createDeductions = async function(req, res, next){
 
         var createdEmployee = await Service.updateEmployee(employee)
         console.log(employee);
-        return res.status(200).json({status: 201, data: createdEmployee, message: "Succesfully Created Deduction"})
+        return res.status(200).json({status: 201, data: createdEmployee, message: "Succesfully Updated Deduction"})
     }catch(e){
 
         //Return an Error Response Message with Code and the Error Message.
 
-        return res.status(400).json({status: 400, message: "Deduction Creation was Unsuccesfull"})
+        return res.status(400).json({status: 400, message: "Deduction Updation was Unsuccesfull"})
     }
 
 }
@@ -142,15 +142,3 @@ exports.removeEmployee = async function(req, res, next){
 
 }
 
-exports.removeDeductions = async function(req, res, next){
-
-    var id = req.params.id;
-
-    try{
-        var deleted = await Service.removeDeductions(id)
-        return res.status(204).json({status:204, message: "Succesfully Deduction Deleted"})
-    }catch(e){
-        return res.status(400).json({status: 400, message: e.message})
-    }
-
-}
