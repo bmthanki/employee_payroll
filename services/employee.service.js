@@ -37,29 +37,26 @@ exports.createEmployee = async function(empmst){
 
     // Creating a new Mongoose Object by using the new keyword
 
+    var taxamount = empmst.basesalary*(0.1)
+    var takehomesalary = empmst.basesalary - taxamount
     var newEmployee = new EmpMstModel({
         name: empmst.name,
         designation: empmst.designation,
         basesalary: empmst.basesalary,
-        //deductions: empmst.deductions,
-        takehomesalary: empmst.takehomesalary,
+        taxamount:taxamount,
+        deductiontotal:0,
+        takehomesalary: takehomesalary,
         status: empmst.status
     })
 
-
-
-
     try{
-
         // Saving the Employee
 
         var savedEmployee = await newEmployee.save()
 
         return savedEmployee;
     }catch(e){
-
         // return a Error message describing the reason
-
         throw Error("Error while Creating New Employee")
     }
 }
@@ -70,7 +67,6 @@ exports.updateEmployee = async function(empmst){
 
     try{
         //Find the old Employee Object by the Id
-
         var oldEmployee = await EmpMstModel.findById(id);
     }catch(e){
         throw Error("Error occured while Finding the Employee")
@@ -81,18 +77,22 @@ exports.updateEmployee = async function(empmst){
     if(!oldEmployee){
         return false;
     }
-
+    //temp data
+    var taxamount = empmst.basesalary*(0.1)
+    var deductiontotal =0
+    for (let i = 0; i < empmst.deductions.length; i++) {
+        deductiontotal = Number(deductiontotal) + Number(empmst.deductions[i].amount)
+    }
+    var takehomesalary = (+empmst.basesalary) - (+taxamount - +deductiontotal)
     console.log(oldEmployee)
-
     //Edit the Employee Object
-
     oldEmployee.name = empmst.name,
     oldEmployee.designation = empmst.designation,
     oldEmployee.basesalary = empmst.basesalary,
+    oldEmployee.taxamount = taxamount,
+    oldEmployee.deductiontotal = deductiontotal,
     oldEmployee.deductions = empmst.deductions,
-    oldEmployee.takehomesalary = empmst.takehomesalary,
-    oldEmployee.status = empmst.status
-
+    oldEmployee.takehomesalary = takehomesalary
 
     console.log(oldEmployee)
 
@@ -119,18 +119,3 @@ exports.deleteEmployee = async function(id){
     }
 }
 
-
-exports.deleteEmployee = async function(id){
-
-    // Delete the Employee
-
-    try{
-        var deleted = await EmpMstModel.remove({_id: id})
-        if(deleted.n === 0){
-            throw Error("Employee Could not be deleted")
-        }
-        return deleted
-    }catch(e){
-        throw Error("Error Occured while Deleting the Employee")
-    }
-}

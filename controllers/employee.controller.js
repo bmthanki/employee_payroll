@@ -42,10 +42,7 @@ exports.createEmployee = async function(req, res, next){
     var employee = {
         name: req.body.name,
         designation: req.body.designation,
-        basesalary: req.body.basesalary,
-        //deductions: req.body.deductions,
-        takehomesalary: req.body.takehomesalary,
-        status: req.body.status
+        basesalary: req.body.basesalary
     }
 
 
@@ -78,9 +75,7 @@ exports.createDeductions = async function(req, res, next){
         name: req.body.name ? req.body.name:null,
         designation: req.body.designation?req.body.designation:null,
         basesalary: req.body.basesalary?req.body.basesalary:null,
-        deductions: req.body.deductions?req.body.deductions:null,
-        takehomesalary: req.body.takehomesalary?req.body.takehomesalary:null,
-        status: req.body.status?req.body.status:null
+        deductions: req.body.deductions?req.body.deductions:null
     }
 
     try{
@@ -116,9 +111,7 @@ exports.updateEmployee = async function(req, res, next){
         name: req.body.name ? req.body.name:null,
         designation: req.body.designation?req.body.designation:null,
         basesalary: req.body.basesalary?req.body.basesalary:null,
-        deductions: req.body.deductions?req.body.deductions:null,
-        takehomesalary: req.body.takehomesalary?req.body.takehomesalary:null,
-        status: req.body.status?req.body.status:null
+        deductions: req.body.deductions?req.body.deductions:null
     }
 
     try{

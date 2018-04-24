@@ -15,6 +15,8 @@ router.post('/', EmployeeController.createEmployee)
 
 router.put('/', EmployeeController.updateEmployee)
 
+router.delete('/:id',EmployeeController.removeEmployee)
+
 router.post('/deduction',EmployeeController.createDeductions)
 
 
