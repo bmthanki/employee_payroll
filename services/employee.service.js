@@ -78,7 +78,7 @@ exports.updateEmployee = async function(empmst){
         return false;
     }
     //temp data
-    var taxamount = empmst.basesalary*(0.1)
+    var taxamount = empmst.basesalary*(0.1).toFixed(2)
     var deductiontotal =0
     for (let i = 0; i < empmst.deductions.length; i++) {
         deductiontotal = Number(deductiontotal) + Number(empmst.deductions[i].amount)
